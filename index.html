@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bitcoin Price Projection</title>
+    <!-- Include Chart.js library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #customInput {
+            margin-top: 10px;
+        }
+        canvas {
+            max-width: 800px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Bitcoin Price Projection to 2045</h1>
+    <div>
+        <label for="scenario">Select Scenario:</label>
+        <select id="scenario">
+            <option value="bear">Bear Case</option>
+            <option value="base">Base Case</option>
+            <option value="bull">Bull Case</option>
+            <option value="custom">Custom</option>
+        </select>
+    </div>
+    <div id="customInput" style="display: none;">
+        <label for="customGrowth">Enter Yearly Price Gain (%):</label>
+        <input type="number" id="customGrowth" step="0.01">
+    </div>
+    <canvas id="priceChart"></canvas>
+
+    <!-- Include your JavaScript file -->
+    <script src="script.js"></script>
+</body>
+</html>
