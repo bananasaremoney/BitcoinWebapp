@@ -5,6 +5,7 @@ const scenarioSelect = document.getElementById('scenario');
 const customInputDiv = document.getElementById('customInput');
 const customGrowthInput = document.getElementById('customGrowth');
 const priceChartCanvas = document.getElementById('priceChart');
+const currentPriceDisplay = document.getElementById('currentPriceDisplay');
 let priceChart;
 
 // Event listeners
@@ -77,7 +78,14 @@ function calculatePrices(currentPrice) {
 
 // Generate the chart
 async function generateChart() {
+    // Show spinner
+    currentPriceDisplay.innerHTML = `<span class="spinner-border spinner-border-sm text-primary" role="status" aria-hidden="true"></span> Fetching current Bitcoin price...`;
+
     const currentPrice = await fetchCurrentPrice();
+
+    // Display the current price
+    currentPriceDisplay.innerHTML = `Current Bitcoin Price: $${currentPrice.toLocaleString()}`;
+
     const { labels, prices } = calculatePrices(currentPrice);
 
     const data = {
@@ -85,9 +93,14 @@ async function generateChart() {
         datasets: [{
             label: 'Bitcoin Price Projection',
             data: prices,
-            borderColor: 'rgba(75, 192, 192, 1)',
-            fill: false,
-            tension: 0.1
+            borderColor: '#ffc107',
+            backgroundColor: 'rgba(255, 193, 7, 0.2)',
+            fill: true,
+            tension: 0.1,
+            pointBackgroundColor: '#ffc107',
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: '#ffc107'
         }]
     };
 
@@ -95,6 +108,7 @@ async function generateChart() {
         type: 'line',
         data: data,
         options: {
+            responsive: true,
             scales: {
                 y: {
                     beginAtZero: false,
