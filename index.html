@@ -2,7 +2,47 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Bitcoin Calculator</title>
+    <title>Bitcoin Price Projection to 2045 | Bear, Base, Bull Cases</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Visualize Bitcoin's potential future prices up to 2045 based on Michael Saylor's bear, base, and bull scenarios. Interactive charts and custom projections included.">
+    <meta name="keywords" content="Bitcoin, Price Projection, Bitcoin Price, Michael Saylor, Cryptocurrency, Investment, Bear Case, Bull Case, Custom Projection">
+    <meta name="author" content="Your Name or Company">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="canonical" href="https://bananasaremoney.github.io/BitcoinWebapp/">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Bitcoin Calculator",
+        "url": "https://bananasaremoney.github.io/BitcoinWebapp/",
+        "author": {
+            "@type": "Person",
+            "name": "Your Name"
+        },
+        "description": "Visualize Bitcoin's potential future prices up to 2045 based on Michael Saylor's scenarios.",
+        "keywords": "Bitcoin, Price Projection, Michael Saylor, Cryptocurrency"
+    }
+    </script>
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Bitcoin Price Projection to 2045">
+    <meta property="og:description" content="Visualize Bitcoin's future prices based on bear, base, and bull cases.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.yourdomain.com/bitcoin-projection">
+    <meta property="og:image" content="https://www.yourdomain.com/images/bitcoin-projection.png">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Bitcoin Price Projection to 2045">
+    <meta name="twitter:description" content="Explore Bitcoin's potential future prices based on different scenarios.">
+    <meta name="twitter:image" content="https://www.yourdomain.com/images/bitcoin-projection.png">
+
+    <!-- Include Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
     <!-- Include Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Include Chart.js library -->
@@ -10,7 +50,9 @@
     <style>
         /* Custom styles */
         body {
-            background-color: #f8f9fa;
+            background: linear-gradient(to right, #141e30, #243b55);
+            font-family: 'Roboto', sans-serif;
+            color: #ffffff;
         }
         #priceChart {
             max-width: 100%;
@@ -18,6 +60,8 @@
         }
         .card {
             margin-top: 20px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: none;
         }
         .custom-input {
             margin-top: 15px;
@@ -25,21 +69,33 @@
         .footer {
             margin-top: 40px;
             text-align: center;
-            color: #6c757d;
+            color: #adb5bd;
+        }
+        .navbar {
+            background-color: transparent !important;
         }
     </style>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4XFT1RKJ07"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'UA-XXXXXXXXX-X');
+    </script>
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Bitcoin Calculator</a>
+            <a class="navbar-brand" href="#">Bitcoin Projection</a>
         </div>
     </nav>
 
     <div class="container mt-5">
         <div class="text-center">
-            <h1 class="display-5">Bitcoin Calculator</h1>
+            <h1 class="display-5">Bitcoin Price Projection to 2045</h1>
             <p class="lead">Visualize potential future prices based on different scenarios.</p>
         </div>
 
@@ -61,7 +117,10 @@
                             <input type="number" id="customGrowth" class="form-control" step="0.01" placeholder="e.g., 15">
                         </div>
                         <div class="col-md-4">
-                            <p id="currentPriceDisplay" class="mt-4 mb-0">Fetching current Bitcoin price...</p>
+                            <p id="currentPriceDisplay" class="mt-4 mb-0">
+                                <span class="spinner-border spinner-border-sm text-primary" role="status" aria-hidden="true"></span>
+                                Fetching current Bitcoin price...
+                            </p>
                         </div>
                     </div>
                 </form>
@@ -70,8 +129,18 @@
 
         <canvas id="priceChart"></canvas>
 
-        <div class="footer">
-            <p>&copy; 2024 Bitcoin Calculator</p>
+        <div class="footer text-center">
+            <p>&copy; 2023 Bitcoin Projection Tool</p>
+            <!-- StatCounter Code for Visible Visitor Counter -->
+            <script type="text/javascript">
+                var sc_project=12345678; 
+                var sc_invisible=0; 
+                var sc_security="abcdef12"; 
+                var scJsHost = (("https:" == document.location.protocol) ? "https://secure." : "http://www.");
+                document.write("<sc"+"ript type='text/javascript' src='" + scJsHost+
+                "statcounter.com/counter/counter.js'></"+"script>");
+            </script>
+            <noscript><div class="statcounter"><a title="Web Analytics" href="https://statcounter.com/" target="_blank"><img class="statcounter" src="https://c.statcounter.com/12345678/0/abcdef12/0/" alt="Web Analytics"></a></div></noscript>
         </div>
     </div>
 
