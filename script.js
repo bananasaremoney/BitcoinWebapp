@@ -41,8 +41,8 @@ async function fetchCurrentPrice() {
     }
 }
 
-// Calculate the yearly prices
-function calculatePrices(startingPrice) {
+// Calculate the yearly prices starting from $69,420 in 2024
+function calculatePrices() {
     const targetPrices = {
         bear: 3000000,
         base: 13000000,
@@ -53,6 +53,8 @@ function calculatePrices(startingPrice) {
     const years = endYear - startYear + 1;
     const labels = [];
     const prices = [];
+
+    const startingPrice = 69420; // Starting price in 2024
 
     let annualGrowthRate;
 
@@ -68,12 +70,7 @@ function calculatePrices(startingPrice) {
 
     for (let i = 0; i < years; i++) {
         const year = startYear + i;
-        let price;
-        if (year === startYear) {
-            price = startingPrice; // Starting price for 2024 is $69,420
-        } else {
-            price = startingPrice * Math.pow(1 + annualGrowthRate, i);
-        }
+        const price = startingPrice * Math.pow(1 + annualGrowthRate, i);
         labels.push(year);
         prices.push(price.toFixed(2));
     }
@@ -88,14 +85,11 @@ async function generateChart() {
     // Fetch current Bitcoin price
     const currentPrice = await fetchCurrentPrice();
 
-    // Set starting price for projection in 2024 to $69,420
-    const startingPrice = 69420;
-
     // Update current price display
     currentPriceDisplay.innerHTML = `<span class="text-white fw-bold">Current Bitcoin Price: $${currentPrice.toLocaleString()}</span>`;
 
     // Calculate projected prices
-    const { labels, prices } = calculatePrices(startingPrice);
+    const { labels, prices } = calculatePrices();
 
     // Find the index of the current year
     const currentYearIndex = labels.indexOf(currentYear);
@@ -115,36 +109,45 @@ async function generateChart() {
     if (projectedPriceCurrentYear !== null) {
         difference = currentPrice - projectedPriceCurrentYear;
         isAbove = difference > 0;
-        differenceText = isAbove ? `+$${difference.toLocaleString(undefined, { maximumFractionDigits: 2 })}` : `-$${Math.abs(difference).toLocaleString(undefined, { maximumFractionDigits: 2 })}`;
+        differenceText = isAbove
+            ? `+$${difference.toLocaleString(undefined, { maximumFractionDigits: 2 })}`
+            : `-$${Math.abs(difference).toLocaleString(undefined, { maximumFractionDigits: 2 })}`;
         differenceColor = isAbove ? 'green' : 'red';
     }
 
-    // Prepare point colors
-    const pointBackgroundColors = Array(prices.length).fill('#ffc107'); // Default color
-    const pointBorderColors = Array(prices.length).fill('#fff'); // Default border color
+    // Prepare datasets
+    const projectedData = prices.map(price => parseFloat(price));
+    const currentPriceData = labels.map(year => (year === currentYear ? currentPrice : null));
 
-    if (currentYearIndex !== -1) {
-        pointBackgroundColors[currentYearIndex] = isAbove ? 'green' : 'red';
-        pointBorderColors[currentYearIndex] = '#fff';
-    }
-
-    // Prepare the dataset with updated point colors
     const data = {
         labels: labels,
-        datasets: [{
-            label: 'Bitcoin Price Projection',
-            data: prices,
-            borderColor: '#ffc107',
-            backgroundColor: 'rgba(255, 193, 7, 0.2)',
-            fill: true,
-            tension: 0.1,
-            pointBackgroundColor: pointBackgroundColors,
-            pointBorderColor: pointBorderColors,
-            pointRadius: prices.map((_, index) => (index === currentYearIndex ? 8 : 5)),
-            pointHoverRadius: prices.map((_, index) => (index === currentYearIndex ? 10 : 7)),
-            pointHoverBackgroundColor: pointBackgroundColors,
-            pointHoverBorderColor: '#fff'
-        }]
+        datasets: [
+            {
+                label: 'Bitcoin Price Projection',
+                data: projectedData,
+                borderColor: '#ffc107',
+                backgroundColor: 'rgba(255, 193, 7, 0.2)',
+                fill: true,
+                tension: 0.1,
+                pointBackgroundColor: '#ffc107',
+                pointBorderColor: '#fff',
+                pointRadius: 5,
+                pointHoverRadius: 7,
+            },
+            {
+                label: 'Current Bitcoin Price',
+                data: currentPriceData,
+                borderColor: 'transparent',
+                backgroundColor: differenceColor,
+                pointBackgroundColor: differenceColor,
+                pointBorderColor: '#fff',
+                pointRadius: labels.map(year => (year === currentYear ? 8 : 0)),
+                pointHoverRadius: labels.map(year => (year === currentYear ? 10 : 0)),
+                type: 'line',
+                fill: false,
+                showLine: false,
+            },
+        ],
     };
 
     const config = {
@@ -155,19 +158,19 @@ async function generateChart() {
             plugins: {
                 legend: {
                     labels: {
-                        color: '#ffffff' // Make legend text white
-                    }
+                        color: '#ffffff', // Make legend text white
+                    },
                 },
                 tooltip: {
                     callbacks: {
-                        label: function(context) {
+                        label: function (context) {
                             return '$' + parseFloat(context.parsed.y).toLocaleString();
-                        }
-                    }
+                        },
+                    },
                 },
                 // Custom plugin to display the difference text
-                afterDraw: function(chart) {
-                    if (currentYearIndex === -1 || difference === null) return;
+                afterDraw: function (chart) {
+                    if (difference === null) return;
                     const ctx = chart.ctx;
                     const chartArea = chart.chartArea;
 
@@ -178,27 +181,27 @@ async function generateChart() {
                     ctx.textBaseline = 'middle';
 
                     // Position the text in the center-top of the chart
-                    ctx.fillText(differenceText, (chartArea.left + chartArea.right) / 2, chartArea.top + 50);
+                    ctx.fillText(differenceText, (chartArea.left + chartArea.right) / 2, chartArea.top + 30);
                     ctx.restore();
-                }
+                },
             },
             scales: {
                 y: {
                     beginAtZero: false,
                     ticks: {
-                        callback: function(value, index, values) {
+                        callback: function (value, index, values) {
                             return '$' + parseFloat(value).toLocaleString();
                         },
-                        color: '#ffffff' // Make y-axis labels white
-                    }
+                        color: '#ffffff', // Make y-axis labels white
+                    },
                 },
                 x: {
                     ticks: {
-                        color: '#ffffff' // Make x-axis labels white
-                    }
-                }
-            }
-        }
+                        color: '#ffffff', // Make x-axis labels white
+                    },
+                },
+            },
+        },
     };
 
     if (priceChart) {
@@ -206,4 +209,3 @@ async function generateChart() {
     }
     priceChart = new Chart(priceChartCanvas, config);
 }
- 
