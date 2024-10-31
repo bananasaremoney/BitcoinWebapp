@@ -36,8 +36,8 @@ async function fetchCurrentPrice() {
         return currentPrice;
     } catch (error) {
         console.error('Error fetching current Bitcoin price:', error);
-        // Default to 27,000 if there's an error
-        return 27000;
+        // Default to 72,304 if there's an error
+        return 72304;
     }
 }
 
@@ -48,7 +48,7 @@ function calculatePrices(currentPrice) {
         base: 13000000,
         bull: 49000000
     };
-    const startYear = new Date().getFullYear();
+    const startYear = 2024; // Updated to 2024
     const endYear = 2045;
     const years = endYear - startYear + 1;
     const labels = [];
@@ -115,11 +115,22 @@ async function generateChart() {
                     ticks: {
                         callback: function(value, index, values) {
                             return '$' + parseFloat(value).toLocaleString();
-                        }
+                        },
+                        color: '#ffffff' // Make y-axis labels white
+                    }
+                },
+                x: {
+                    ticks: {
+                        color: '#ffffff' // Make x-axis labels white
                     }
                 }
             },
             plugins: {
+                legend: {
+                    labels: {
+                        color: '#ffffff' // Make legend text white
+                    }
+                },
                 tooltip: {
                     callbacks: {
                         label: function(context) {
