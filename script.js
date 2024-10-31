@@ -206,3 +206,4 @@ async function generateChart() {
     }
     priceChart = new Chart(priceChartCanvas, config);
 }
+ 
