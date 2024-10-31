@@ -1,0 +1,47 @@
+/* style.css */
+
+/* Custom styles */
+body {
+    background: linear-gradient(to right, #141e30, #243b55);
+    font-family: 'Roboto', sans-serif;
+    color: #ffffff;
+}
+
+#priceChart {
+    max-width: 100%;
+    height: 400px;
+}
+
+.card {
+    margin-top: 20px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: none;
+}
+
+.custom-input {
+    margin-top: 15px;
+}
+
+.footer {
+    margin-top: 40px;
+    text-align: center;
+    color: #adb5bd;
+}
+
+.navbar {
+    background-color: transparent !important;
+}
+
+.form-label {
+    font-weight: bold;
+}
+
+/* Ensure select and input text is white */
+select.form-select, input.form-control {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+}
+
+select.form-select option {
+    color: #000000;
+}
