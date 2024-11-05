@@ -68,6 +68,7 @@ select.form-select option {
     color: #ffffff;
 }
 
+/* Center QR codes and adjust size */
 .donation-section img,
 .donation-section canvas {
     display: block;
@@ -77,4 +78,10 @@ select.form-select option {
     width: 150px;
     height: 150px;
 }
- 
+
+.bmc-qr {
+    width: 150px;
+    height: 150px;
+    border: 2px solid #ffffff;
+    border-radius: 8px;
+}
