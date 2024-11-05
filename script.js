@@ -36,8 +36,9 @@ async function fetchCurrentPrice() {
         return currentPrice;
     } catch (error) {
         console.error('Error fetching current Bitcoin price:', error);
-        // Default to a placeholder price if there's an error
-        return 0;
+        // Display error message to the user
+        currentPriceDisplay.innerHTML = `<span class="text-white fw-bold">Error fetching Bitcoin price.</span>`;
+        return null;
     }
 }
 
@@ -84,6 +85,10 @@ async function generateChart() {
 
     // Fetch current Bitcoin price
     const currentPrice = await fetchCurrentPrice();
+    if (currentPrice === null) {
+        // If there's an error fetching the price, do not proceed further
+        return;
+    }
 
     // Update current price display
     currentPriceDisplay.innerHTML = `<span class="text-white fw-bold">Current Bitcoin Price: $${currentPrice.toLocaleString()}</span>`;
