@@ -85,3 +85,13 @@ select.form-select option {
     border: 2px solid #ffffff;
     border-radius: 8px;
 }
+
+/* Responsive adjustments */
+@media (max-width: 767.98px) {
+    .donation-section img,
+    .donation-section canvas,
+    .bmc-qr {
+        width: 120px;
+        height: 120px;
+    }
+}
