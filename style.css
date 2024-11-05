@@ -66,6 +66,14 @@ select.form-select option {
 
 .donation-section p {
     color: #ffffff;
+    text-align: center; /* Ensure text is centered */
+}
+
+/* Flexbox for donation columns */
+.donation-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 /* Center QR codes and adjust size */
@@ -95,4 +103,3 @@ select.form-select option {
         height: 120px;
     }
 }
-
