@@ -212,9 +212,9 @@ async function generateChart() {
 
 // Generate QR codes after the DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
-    // Generate QR codes
+    // Generate QR codes for cryptocurrencies
     new QRCode(document.getElementById("qrcode-bitcoin"), "bitcoin:bc1qtast7rja0qr6njgmxq2lepq7ygz8wymf338ggk");
     new QRCode(document.getElementById("qrcode-solana"), "solana:C82DPDGoyQdz8stbGJLkPZjqeFGrsxfpfGoj3iBMq8Cd");
     new QRCode(document.getElementById("qrcode-ethereum"), "ethereum:0xf8a1CcE17fdccFE997D65DAD9429EfF74Eb4B0F6");
-    new QRCode(document.getElementById("qrcode-buymeacoffee"), "https://buymeacoffee.com/bananas");
+    // Note: Buy Me A Coffee QR code is now a static image (bmc_qr.png)
 });
