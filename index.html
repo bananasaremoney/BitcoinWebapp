@@ -48,21 +48,8 @@
     <!-- Include Chart.js library -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <!-- Include QRCode.js Library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-
     <!-- Custom Stylesheet -->
     <link rel="stylesheet" href="style.css">
-
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4XFT1RKJ07"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-4XFT1RKJ07');
-    </script>
 </head>
 <body>
     
@@ -118,19 +105,19 @@
             <p>Your support helps us keep this Bitcoin Calculator running. If you find this tool useful, please consider making a donation. Every contribution counts!</p>
             <div class="row justify-content-center">
                 <!-- Bitcoin Donation -->
-                <div class="col-md-4">
+                <div class="col-md-4 text-center">
                     <h4>Bitcoin</h4>
                     <div id="qrcode-bitcoin"></div>
                     <p class="mt-2"><strong>Address:</strong> bc1qtast7rja0qr6njgmxq2lepq7ygz8wymf338ggk</p>
                 </div>
                 <!-- Solana Donation -->
-                <div class="col-md-4">
+                <div class="col-md-4 text-center">
                     <h4>Solana</h4>
                     <div id="qrcode-solana"></div>
                     <p class="mt-2"><strong>Address:</strong> C82DPDGoyQdz8stbGJLkPZjqeFGrsxfpfGoj3iBMq8Cd</p>
                 </div>
                 <!-- Ethereum/Base Donation -->
-                <div class="col-md-4">
+                <div class="col-md-4 text-center">
                     <h4>Ethereum/Base</h4>
                     <div id="qrcode-ethereum"></div>
                     <p class="mt-2"><strong>Address:</strong> 0xf8a1CcE17fdccFE997D65DAD9429EfF74Eb4B0F6</p>
@@ -162,7 +149,18 @@
 
     <!-- Include Bootstrap JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Include QRCode.js Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <!-- Include your JavaScript file -->
     <script src="script.js"></script>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4XFT1RKJ07"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-4XFT1RKJ07');
+    </script>
 </body>
 </html>
