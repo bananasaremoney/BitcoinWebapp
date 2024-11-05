@@ -70,7 +70,8 @@ select.form-select option {
 
 .donation-section img,
 .donation-section canvas {
-    margin-top: 10px;
+    display: block;
+    margin: 10px auto; /* Center the QR codes */
     border: 2px solid #ffffff;
     border-radius: 8px;
     width: 150px;
