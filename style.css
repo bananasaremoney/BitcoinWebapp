@@ -45,3 +45,34 @@ select.form-select, input.form-control {
 select.form-select option {
     color: #000000;
 }
+
+/* Donation Section Styles */
+.donation-section {
+    padding: 40px 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+    margin-bottom: 40px;
+}
+
+.donation-section h2 {
+    color: #ffc107;
+    margin-bottom: 20px;
+}
+
+.donation-section h4 {
+    color: #ffffff;
+    margin-top: 20px;
+}
+
+.donation-section p {
+    color: #ffffff;
+}
+
+.donation-section img,
+.donation-section canvas {
+    margin-top: 10px;
+    border: 2px solid #ffffff;
+    border-radius: 8px;
+    width: 150px;
+    height: 150px;
+}
