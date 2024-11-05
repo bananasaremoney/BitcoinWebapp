@@ -223,4 +223,3 @@ document.addEventListener('DOMContentLoaded', function() {
     new QRCode(document.getElementById("qrcode-ethereum"), "ethereum:0xf8a1CcE17fdccFE997D65DAD9429EfF74Eb4B0F6");
     // Note: Buy Me A Coffee QR code is now a static image (bmc_qr.png)
 });
-
